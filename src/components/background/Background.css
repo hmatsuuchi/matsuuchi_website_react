@@ -1,0 +1,66 @@
+#background {
+    position: absolute;
+}
+
+#background-gradient {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    background: linear-gradient(90deg, #ee0979, #f5af19);
+}
+
+#background-gradient-mask {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    mask-image: linear-gradient(180deg, transparent, black);
+    -webkit-mask-image: linear-gradient(180deg, transparent, black);
+    background: linear-gradient(90deg, #8360c3,#2ebf91);
+}
+
+#background-shapes-container {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#background-shape-1 {
+    position: absolute;
+
+    width: 50vw;
+    height: 50vw;
+    border-radius: 50%;
+
+    bottom: -20vw;
+    right: -10vw;
+
+}
+
+#background-shape-2 {
+    position: absolute;
+
+    width: 75vw;
+    height: 75vw;
+    border-radius: 50%;
+
+    top: -10vw;
+    left: -40vw;
+}
+
+.background-glass {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}

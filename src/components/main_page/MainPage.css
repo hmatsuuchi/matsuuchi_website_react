@@ -1,0 +1,21 @@
+#main-page {
+    margin: 0 auto;
+    max-width: none;
+
+    font-family: 'Josefin Sans', sans-serif;
+
+    display: grid;
+    justify-content: center;
+    grid-row-gap: 2rem;
+
+    transition-duration: 500ms;
+    transition-timing-function: ease-in;
+}
+
+/* ======= 992px ======= */
+@media (min-width: 992px) {
+    #main-page {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 2rem;
+    }
+}

@@ -1,0 +1,92 @@
+#header .primary-container {
+    display: grid;
+    justify-items: center;
+    align-content: start;
+}
+
+#portrait-container {
+    width: 13rem;
+    height: 13rem;
+}
+
+#portrait-background {
+    position: absolute;
+    width: 11.5rem;
+    height: 11.5rem;
+    border-radius: 50%;
+
+    margin: 1.5rem .75rem 0 .75rem;
+
+    background: rgba(245, 175, 25, .5);
+}
+
+#portrait-upper {
+    position: relative;
+    width: 11.5rem;
+    height: calc(6.5rem + 2px);
+
+    margin: 0 calc(.75rem + 2px);
+
+    background-image: url('img/hiroki_illustration.svg');
+    background-repeat: no-repeat;
+    background-position: 50% calc(.5rem + 2px);
+    background-size: auto 13rem;
+}
+
+#portrait-lower {
+    position: relative;
+    width: 11.5rem;
+    height: 6.5rem;
+    border-bottom-left-radius: 5.75rem;
+    border-bottom-right-radius: 5.75rem;
+
+    margin: 0 calc(.75rem + 2px);
+
+    background-image: url('img/hiroki_illustration.svg');
+    background-repeat: no-repeat;
+    background-position: 50% -6rem;
+    background-size: auto 13rem;
+}
+
+/* ======= 576px ======= */
+@media (min-width: 576px) {
+    #portrait-container {
+        width: 16rem;
+        height: 16rem;
+    }
+
+    #portrait-background {
+        width: 14rem;
+        height: 14rem;
+
+        margin: 2rem 1rem 0 1rem;
+    }
+
+    #portrait-upper {
+        width: 14rem;
+        height: calc(8rem + 2px);
+        margin: 0 calc(1rem + 2px);
+
+        background-position: 50% calc(.5rem + 2px);
+        background-size: auto 16rem;
+    }
+
+    #portrait-lower {
+        width: 14rem;
+        height: 8rem;
+        margin: 0 calc(1rem + 2px);
+
+        background-position: 50% -7.5rem;
+        background-size: auto 16rem;
+
+        border-bottom-left-radius: 7rem;
+        border-bottom-right-radius: 7rem;
+    }
+}
+
+/* ======= 1200px ======= */
+@media (min-width: 1200px) {
+    #header {
+        justify-self: right;
+    }
+}

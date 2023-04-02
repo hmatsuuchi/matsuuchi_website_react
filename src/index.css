@@ -1,0 +1,97 @@
+body {
+  margin: 2rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: rgb(35, 35, 35);
+  line-height: 1.8rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(60, 60, 60)
+}
+
+h4 {
+  margin: .5rem 0;
+
+  font-size: 1.4rem;
+  font-weight: inherit;
+}
+
+p {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  font-style: italic;
+  color: rgb(40, 40, 40)
+}
+
+ul {
+  padding-inline-start: 0;
+  margin: 0;
+}
+
+li {
+  padding: 1rem 0;
+  
+  font-weight: 300;
+
+  list-style-type: none;
+
+  display: grid;
+  grid-column-gap: 1.5rem;
+}
+
+.bold-text {
+  font-weight: 700;
+  color: #000;
+}
+
+.purple-text {
+  color: rgb(101,66,165);
+}
+
+section {
+  max-width: 500px;
+}
+
+.primary-container {
+  padding: 2rem;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(.2rem);
+  -webkit-backdrop-filter: blur(.2rem);
+  border-radius: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background-clip: padding-box;
+}
+
+/* ======= 576px ======= */
+@media (min-width: 576px) {
+  h1 {
+      font-size: 2.5rem;
+  }
+
+  h2 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+  }
+}
+
+/* ======= 992px ======= */
+@media (min-width: 992px) {
+  section {
+      max-width: 600px;
+  }
+}
