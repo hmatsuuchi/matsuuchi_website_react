@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import "./TechnicalSkills.css";
 import axios from "axios";
 
+import LoadingText from "../../LoadingText";
+
 // TECHNICAL SKILLS
 function TechnicalSkills() {
   return (
@@ -19,8 +21,6 @@ function TechnicalSkills() {
   );
 }
 
-export default TechnicalSkills;
-
 // TECHNICAL SKILLS - SKILLS CONTAINER
 function SkillsContainers() {
   const [skillsData, setSkillsData] = useState(null); // all data from API call
@@ -37,27 +37,27 @@ function SkillsContainers() {
       .catch((error) => console.log(error));
   }, []);
 
-  if (skillsData != null) {
-    const skillsListElement = skillsData.skills_type_list.map((skillType) => (
+  if (skillsData !== null) {
+    return skillsData.skills_type_list.map((skillType) => (
       <div className="skills-type-container" key={skillType[0]}>
         <h3>{skillType[1]}</h3>
         <SkillsList skillsData={skillsData} currentSkillType={skillType} />
       </div>
     ));
-
-    return skillsListElement;
+  } else {
+    return <LoadingText paragraphs={7} minLines={3} />;
   }
 }
 
 // TECHNICAL SKILLS - SKILLS CONTAINER - SKILLS LIST
 function SkillsList({ skillsData, currentSkillType }) {
-  const skillsElement = skillsData.skills_list.map((skill) => {
-    if (skill.skill_type == currentSkillType[0]) {
+  return skillsData.skills_list.map((skill) => {
+    if (skill.skill_type === currentSkillType[0]) {
       return <Skill oldestSkill={skillsData.oldest_skill} skillData={skill} />;
+    } else {
+      return null;
     }
   });
-
-  return skillsElement;
 }
 
 // TECHNICAL SKILLS - SKILLS CONTAINER - SKILLS LIST - SKILL
@@ -74,13 +74,13 @@ function Skill({ skillData, oldestSkill }) {
 
     if (yearsSince > 1) {
       elapsedTimeString += `${Math.floor(yearsSince)} years`;
-    } else if (yearsSince == 1) {
+    } else if (yearsSince === 1) {
       elapsedTimeString += `${Math.floor(yearsSince)} year`;
     }
 
     if (monthsRemainder > 1) {
       elapsedTimeString += ` ${Math.floor(monthsRemainder)} months`;
-    } else if (monthsRemainder == 1) {
+    } else if (monthsRemainder === 1) {
       elapsedTimeString += ` ${Math.floor(yearsSince)} month`;
     }
 
@@ -97,9 +97,30 @@ function Skill({ skillData, oldestSkill }) {
 
     return percentage;
   }
-  const ref = useRef(null);
 
-  const skill = (
+  // sets animation for each skill progress bar
+  const ref = useRef(null);
+  useEffect(() => {
+    if (ref.current != null) {
+      const skillAnimation = [
+        {
+          width: `0`,
+        },
+        { width: `${skillPercentage(skillData.skill_start, oldestSkill)}%` },
+      ];
+
+      const skillTiming = {
+        duration: 1000,
+        iterations: 1,
+        fill: "forwards",
+        easing: "ease",
+      };
+
+      ref.current.animate(skillAnimation, skillTiming);
+    }
+  }, [oldestSkill, skillData.skill_start]);
+
+  return (
     <li key={skillData.id}>
       <h4>{skillData.skill_title}</h4>
       <div className="start-container">
@@ -110,40 +131,6 @@ function Skill({ skillData, oldestSkill }) {
       </div>
     </li>
   );
-
-  useEffect(() => {
-    // integerSign 1 = positive, 2 = negative, 3 = both
-    function randomMotionGenerator(max, integerSign) {
-      let output = Math.random() * max;
-
-      if (integerSign == 2) {
-        output *= -1;
-      } else if (Math.random() < 0.5 && integerSign == 3) {
-        output *= -1;
-      }
-
-      return Math.round(output);
-    }
-
-    if (ref.current != null) {
-      const skillAnimation = [
-        {
-          width: `0`,
-        },
-        { width: `${skillPercentage(skillData.skill_start, oldestSkill)}%` },
-      ];
-
-      const skillTiming = {
-        duration: 500,
-        iterations: 1,
-        delay: randomMotionGenerator(1000, 1),
-        fill: "forwards",
-        easing: "ease",
-      };
-
-      ref.current.animate(skillAnimation, skillTiming);
-    }
-  }, []);
-
-  return skill;
 }
+
+export default TechnicalSkills;

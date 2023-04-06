@@ -1,0 +1,12 @@
+#project-details {
+    width: calc(100vw - 4rem);
+    max-width: 1000px;
+}
+
+.back-arrow-container {
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 1rem;
+
+    cursor: pointer;
+}

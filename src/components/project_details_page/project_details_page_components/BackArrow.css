@@ -1,0 +1,7 @@
+.back-arrow {
+    width: 5rem;
+    height: 2rem;
+    background-color: red;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
