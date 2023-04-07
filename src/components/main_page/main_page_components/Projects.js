@@ -59,7 +59,9 @@ function ProjectsContainers({
     axios
       .get(url)
       .then(({ data }) => {
-        setProjectsData(data);
+        setTimeout(() => {
+          setProjectsData(data);
+        }, 500 + Math.random() * 500);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -72,7 +74,7 @@ function ProjectsContainers({
           onClick={() => {
             loadProjectDetails(project.id);
           }}>
-          <ForwardArrow />
+          <ForwardArrow arrowText={"LEARN MORE"} />
         </button>
         <h4>{project.project_subtitle}</h4>
         {project.project_website && project.project_github && (

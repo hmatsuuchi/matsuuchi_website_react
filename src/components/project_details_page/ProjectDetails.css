@@ -1,6 +1,10 @@
 #project-details {
+    grid-column: 1 / span 2;
     width: calc(100vw - 4rem);
     max-width: 1000px;
+
+
+    justify-self: center;
 }
 
 .back-arrow-container {

@@ -26,7 +26,9 @@ function ProjectDetails({
     axios
       .get(url)
       .then(({ data }) => {
-        setProjectDetailsData(data);
+        setTimeout(() => {
+          setProjectDetailsData(data);
+        }, 500 + Math.random() * 500);
       })
       .catch((error) => console.log(error));
   }, [url, setProjectDetailsData]);
@@ -35,7 +37,7 @@ function ProjectDetails({
     <section id="project-details">
       <div className="primary-container glass">
         <button onClick={closeProjectDetails}>
-          <BackArrow />
+          <BackArrow arrowText={"BACK TO MAIN"} />
         </button>
         {projectDetailsData ? (
           <div>

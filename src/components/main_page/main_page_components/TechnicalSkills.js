@@ -32,7 +32,9 @@ function SkillsContainers() {
     axios
       .get(url)
       .then(({ data }) => {
-        setSkillsData(data);
+        setTimeout(() => {
+          setSkillsData(data);
+        }, 500 + Math.random() * 500);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -53,7 +55,13 @@ function SkillsContainers() {
 function SkillsList({ skillsData, currentSkillType }) {
   return skillsData.skills_list.map((skill) => {
     if (skill.skill_type === currentSkillType[0]) {
-      return <Skill oldestSkill={skillsData.oldest_skill} skillData={skill} />;
+      return (
+        <Skill
+          oldestSkill={skillsData.oldest_skill}
+          skillData={skill}
+          key={skill.id} // this prevents React key prop warning and is not actually used
+        />
+      );
     } else {
       return null;
     }

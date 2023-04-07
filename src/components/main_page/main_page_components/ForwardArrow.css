@@ -1,6 +1,18 @@
-.forward-arrow {
-    width: 5rem;
-    height: 2rem;
-    background-color: green;
+.arrow-container {
     cursor: pointer;
+
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    grid-column-gap: 1rem;
+}
+
+.forward-arrow {
+    width: 2.5rem;
+    height: 2rem;
+
+    background-image: url('../../img/arrow_20pt_stroke.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: contain;
 }
