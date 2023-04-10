@@ -3,6 +3,10 @@
     grid-row-gap: 2rem;
 }
 
+#technical-skills h4 {
+    grid-row: auto;
+}
+
 .start-container {
     margin-bottom: .5rem;
 

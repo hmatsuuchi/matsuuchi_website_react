@@ -27,9 +27,9 @@ function Background() {
     function randomMotionGenerator(max, integerSign) {
       let output = Math.random() * max;
 
-      if (integerSign == 2) {
+      if (integerSign === 2) {
         output *= -1;
-      } else if (Math.random() < 0.5 && integerSign == 3) {
+      } else if (Math.random() < 0.5 && integerSign === 3) {
         output *= -1;
       }
 

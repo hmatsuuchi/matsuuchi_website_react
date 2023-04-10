@@ -1,16 +1,39 @@
 #project-details {
     grid-column: 1 / span 2;
     width: calc(100vw - 4rem);
-    max-width: 1000px;
-
+    max-width: calc(1200px + 2rem);
 
     justify-self: center;
 }
 
-.back-arrow-container {
-    width: 4rem;
-    height: 4rem;
-    margin-bottom: 1rem;
+#project-details .primary-container {
+    display: grid;
+    grid-row-gap: 1rem;
+}
 
+.back-arrow-container {
     cursor: pointer;
+
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    grid-column-gap: 1rem;
+}
+
+#project-details button {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: left;
+}
+
+.back-arrow {
+    width: 2.5rem;
+    height: 2rem;
+
+    transform: rotate(180deg);
+
+    background-image: url('../img/arrow_20pt_stroke.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: contain;
 }

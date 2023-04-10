@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import LoadingText from "../../LoadingText";
-import ForwardArrow from "./ForwardArrow";
 import "./Projects.css";
 
 // PROJECTS
@@ -9,11 +8,15 @@ function Projects({
   setHeaderRender,
   setTechnicalSkillsRender,
   setProjectsRender,
+  projectData,
+  setProjectData,
   setProjectDetailsRender,
   setProjectDetailsId,
+  projectScrollPosition,
+  setProjectScrollPosition,
 }) {
   return (
-    <section id="projects">
+    <section id="projects" className="fade-in">
       <div className="primary-container glass">
         <h2>
           Each project represents an{" "}
@@ -26,8 +29,12 @@ function Projects({
           setHeaderRender={setHeaderRender}
           setTechnicalSkillsRender={setTechnicalSkillsRender}
           setProjectsRender={setProjectsRender}
+          projectData={projectData}
+          setProjectData={setProjectData}
           setProjectDetailsRender={setProjectDetailsRender}
           setProjectDetailsId={setProjectDetailsId}
+          projectScrollPosition={projectScrollPosition}
+          setProjectScrollPosition={setProjectScrollPosition}
         />
       </div>
     </section>
@@ -39,54 +46,95 @@ function ProjectsContainers({
   setHeaderRender,
   setTechnicalSkillsRender,
   setProjectsRender,
+  projectData,
+  setProjectData,
   setProjectDetailsRender,
   setProjectDetailsId,
+  projectScrollPosition,
+  setProjectScrollPosition,
 }) {
-  function loadProjectDetails(projectId) {
-    setHeaderRender(false);
-    setTechnicalSkillsRender(false);
-    setProjectsRender(false);
-    setProjectDetailsId(projectId);
-    setProjectDetailsRender(true);
-  }
+  // scrolls back to previous y-scroll position when using back button from project details page
+  useEffect(() => {
+    window.scrollTo(0, projectScrollPosition);
+  }, [projectScrollPosition]);
 
-  const [projectsData, setProjectsData] = useState(null); // all data from API call
+  function loadProjectDetails(projectId) {
+    // delays removal of header, technical skills and projects elements until after project details animation completes
+    setTimeout(() => {
+      setHeaderRender(false);
+      setTechnicalSkillsRender(false);
+      setProjectsRender(false);
+      setProjectDetailsId(projectId);
+      setProjectDetailsRender(true);
+    }, 500);
+  }
 
   // makes API call and sets state
   useEffect(() => {
-    const url = "https://matsuuchi.com/api/projects";
-    // const url = "http://localhost:8000/api/projects";
-    axios
-      .get(url)
-      .then(({ data }) => {
-        setTimeout(() => {
-          setProjectsData(data);
-        }, 500 + Math.random() * 500);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    if (projectData === null) {
+      const url = "https://matsuuchi.com/api/projects";
+      // const url = "http://localhost:8000/api/projects";
+      axios
+        .get(url)
+        .then(({ data }) => {
+          setTimeout(() => {
+            setProjectData(data);
+          }, 500 + Math.random() * 500);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [projectData, setProjectData]);
 
-  if (projectsData !== null) {
-    return projectsData.map((project) => (
-      <div className="project-container" key={project.id}>
+  if (projectData !== null) {
+    return projectData.map((project) => (
+      <div
+        id={`project-id-${project.id}`}
+        className="project-container"
+        key={project.id}>
         <h3>{project.project_title}</h3>
-        <button
-          onClick={() => {
-            loadProjectDetails(project.id);
-          }}>
-          <ForwardArrow arrowText={"LEARN MORE"} />
-        </button>
         <h4>{project.project_subtitle}</h4>
         {project.project_website && project.project_github && (
           <ul>
             {project.project_website && (
-              <li key={`${project.id}-website`}>{project.project_website}</li>
+              <li>
+                <a
+                  href={project.project_website}
+                  target="_blank"
+                  rel="noreferrer">
+                  on the web
+                </a>
+              </li>
             )}
             {project.project_github && (
-              <li key={`${project.id}-github`}>{project.project_github}</li>
+              <li>
+                <a
+                  href={project.project_github}
+                  target="_blank"
+                  rel="noreferrer">
+                  on Github
+                </a>
+              </li>
             )}
           </ul>
         )}
+        <button
+          onClick={() => {
+            loadProjectDetails(project.id);
+            setProjectScrollPosition(window.scrollY);
+
+            // gets all sections on page (not including background or main page) and shifts them offscreen
+            const allSections = document.getElementsByTagName("section");
+            Array.from(allSections).forEach((element) => {
+              if (element.id !== "background" && element.id !== "main-page") {
+                element.classList.add("fade-out");
+              }
+            });
+          }}>
+          <div className="forward-arrow-container">
+            <div>SEE DETAILS</div>
+            <div className="forward-arrow"></div>
+          </div>
+        </button>
         <div className="image-placeholder"></div>
       </div>
     ));

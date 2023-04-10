@@ -2,7 +2,6 @@ import "./ProjectDetails.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import LoadingText from "../LoadingText";
-import BackArrow from "./project_details_page_components/BackArrow";
 
 // PROJECT DETAILS
 function ProjectDetails({
@@ -13,10 +12,15 @@ function ProjectDetails({
   setProjectDetailsRender,
 }) {
   function closeProjectDetails() {
-    setHeaderRender(true);
-    setTechnicalSkillsRender(true);
-    setProjectsRender(true);
-    setProjectDetailsRender(false);
+    const projectDetailsSection = document.getElementById("project-details");
+    projectDetailsSection.classList.add("fade-out");
+
+    setTimeout(() => {
+      setHeaderRender(true);
+      setTechnicalSkillsRender(true);
+      setProjectsRender(true);
+      setProjectDetailsRender(false);
+    }, 500);
   }
   const [projectDetailsData, setProjectDetailsData] = useState(false);
 
@@ -33,11 +37,16 @@ function ProjectDetails({
       .catch((error) => console.log(error));
   }, [url, setProjectDetailsData]);
 
+  window.scrollTo(0, 0); // resets y-axis scroll position when transitioning to project details page
+
   return (
-    <section id="project-details">
+    <section id="project-details" className="fade-in">
       <div className="primary-container glass">
         <button onClick={closeProjectDetails}>
-          <BackArrow arrowText={"BACK TO MAIN"} />
+          <div className="back-arrow-container">
+            <div className="back-arrow"></div>
+            <div>BACK TO MAIN</div>
+          </div>
         </button>
         {projectDetailsData ? (
           <div>

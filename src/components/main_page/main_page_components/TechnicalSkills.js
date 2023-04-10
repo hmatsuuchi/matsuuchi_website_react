@@ -1,13 +1,13 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./TechnicalSkills.css";
 import axios from "axios";
 
 import LoadingText from "../../LoadingText";
 
 // TECHNICAL SKILLS
-function TechnicalSkills() {
+function TechnicalSkills({ skillsData, setSkillsData }) {
   return (
-    <section id="technical-skills">
+    <section id="technical-skills" className="fade-in">
       <div className="primary-container glass">
         <h2>
           Coding is my <span className="bold-text purple-text">passion</span>.
@@ -15,29 +15,32 @@ function TechnicalSkills() {
           <span className="bold-text purple-text">favorite technologies</span>{" "}
           and how long I've been working with them
         </h2>
-        <SkillsContainers />
+        <SkillsContainers
+          skillsData={skillsData}
+          setSkillsData={setSkillsData}
+        />
       </div>
     </section>
   );
 }
 
 // TECHNICAL SKILLS - SKILLS CONTAINER
-function SkillsContainers() {
-  const [skillsData, setSkillsData] = useState(null); // all data from API call
-
+function SkillsContainers({ skillsData, setSkillsData }) {
   // makes API call and sets state
   useEffect(() => {
-    const url = "https://matsuuchi.com/api/technical_skills";
-    // const url = "http://localhost:8000/api/technical_skills";
-    axios
-      .get(url)
-      .then(({ data }) => {
-        setTimeout(() => {
-          setSkillsData(data);
-        }, 500 + Math.random() * 500);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    if (skillsData === null) {
+      const url = "https://matsuuchi.com/api/technical_skills";
+      // const url = "http://localhost:8000/api/technical_skills";
+      axios
+        .get(url)
+        .then(({ data }) => {
+          setTimeout(() => {
+            setSkillsData(data);
+          }, 500 + Math.random() * 500);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [skillsData, setSkillsData]);
 
   if (skillsData !== null) {
     return skillsData.skills_type_list.map((skillType) => (

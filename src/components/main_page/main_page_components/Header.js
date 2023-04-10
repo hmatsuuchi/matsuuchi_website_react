@@ -2,7 +2,7 @@ import "./Header.css";
 
 function Header() {
   return (
-    <section id="header">
+    <section id="header" className="fade-in">
       <div className="primary-container glass">
         <div id="portrait-container">
           <div id="portrait-background" className="glass"></div>
