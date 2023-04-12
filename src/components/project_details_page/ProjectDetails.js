@@ -12,15 +12,10 @@ function ProjectDetails({
   setProjectDetailsRender,
 }) {
   function closeProjectDetails() {
-    const projectDetailsSection = document.getElementById("project-details");
-    projectDetailsSection.classList.add("fade-out");
-
-    setTimeout(() => {
-      setHeaderRender(true);
-      setTechnicalSkillsRender(true);
-      setProjectsRender(true);
-      setProjectDetailsRender(false);
-    }, 500);
+    setHeaderRender(true);
+    setTechnicalSkillsRender(true);
+    setProjectsRender(true);
+    setProjectDetailsRender(false);
   }
   const [projectDetailsData, setProjectDetailsData] = useState(false);
 
@@ -32,12 +27,13 @@ function ProjectDetails({
       .then(({ data }) => {
         setTimeout(() => {
           setProjectDetailsData(data);
-        }, 500 + Math.random() * 500);
+        }, 1000 + Math.random() * 500);
       })
       .catch((error) => console.log(error));
   }, [url, setProjectDetailsData]);
 
   window.scrollTo(0, 0); // resets y-axis scroll position when transitioning to project details page
+  console.log("ProjectDetails.js");
 
   return (
     <section id="project-details" className="fade-in">

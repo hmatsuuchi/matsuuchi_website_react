@@ -17,6 +17,9 @@ function MainPage() {
   const [skillsData, setSkillsData] = useState(null); // all technical skills data from API call
   const [projectData, setProjectData] = useState(null); // all project data from API call
 
+  console.log("=====================");
+  console.log("MainPage.js");
+
   return (
     <section id="main-page">
       {headerRender ? <Header /> : null}
@@ -30,6 +33,8 @@ function MainPage() {
         <Projects
           setHeaderRender={setHeaderRender}
           setTechnicalSkillsRender={setTechnicalSkillsRender}
+          skillsData={skillsData}
+          setSkillsData={setSkillsData}
           setProjectsRender={setProjectsRender}
           projectData={projectData}
           setProjectData={setProjectData}

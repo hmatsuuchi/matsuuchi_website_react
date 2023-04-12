@@ -12,11 +12,25 @@
 }
 
 #projects a {
-    /* margin: 1rem 0; */
-    /* text-decoration: none; */
     color: #000000;
     font-weight: 300;
     font-style: italic;
+
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: left;
+    align-content: center;
+    align-items: center;
+    grid-column-gap: .75rem;
+}
+
+.web-globe {
+    height: 2rem;
+    width: 2rem;
+
+    background-image: url('/src/components/img/globe_20pt_stroke.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .image-placeholder {

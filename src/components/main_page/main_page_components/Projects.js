@@ -15,6 +15,8 @@ function Projects({
   projectScrollPosition,
   setProjectScrollPosition,
 }) {
+  console.log("Project.js");
+
   return (
     <section id="projects" className="fade-in">
       <div className="primary-container glass">
@@ -59,14 +61,11 @@ function ProjectsContainers({
   }, [projectScrollPosition]);
 
   function loadProjectDetails(projectId) {
-    // delays removal of header, technical skills and projects elements until after project details animation completes
-    setTimeout(() => {
-      setHeaderRender(false);
-      setTechnicalSkillsRender(false);
-      setProjectsRender(false);
-      setProjectDetailsId(projectId);
-      setProjectDetailsRender(true);
-    }, 500);
+    setHeaderRender(false);
+    setTechnicalSkillsRender(false);
+    setProjectsRender(false);
+    setProjectDetailsId(projectId);
+    setProjectDetailsRender(true);
   }
 
   // makes API call and sets state
@@ -101,7 +100,8 @@ function ProjectsContainers({
                   href={project.project_website}
                   target="_blank"
                   rel="noreferrer">
-                  on the web
+                  <div className="web-globe"></div>
+                  <div>on the web</div>
                 </a>
               </li>
             )}

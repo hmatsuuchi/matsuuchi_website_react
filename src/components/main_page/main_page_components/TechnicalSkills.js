@@ -6,6 +6,8 @@ import LoadingText from "../../LoadingText";
 
 // TECHNICAL SKILLS
 function TechnicalSkills({ skillsData, setSkillsData }) {
+  console.log("TechnicalSkills.js");
+
   return (
     <section id="technical-skills" className="fade-in">
       <div className="primary-container glass">

@@ -1,6 +1,8 @@
 import "./Header.css";
 
 function Header() {
+  console.log("Header.js");
+
   return (
     <section id="header" className="fade-in">
       <div className="primary-container glass">
