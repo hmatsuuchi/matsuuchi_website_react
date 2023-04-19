@@ -2,14 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import Background from "./components/background/Background";
-import MainPage from "./components/main_page/MainPage";
+import AppContainer from "./components/AppContainer";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
     <Background />
-    <MainPage />
+    <AppContainer />
   </React.StrictMode>
 );
 

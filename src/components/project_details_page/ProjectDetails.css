@@ -32,8 +32,129 @@
 
     transform: rotate(180deg);
 
-    background-image: url('../img/arrow_20pt_stroke.svg');
+    background-image: url('/public/img/main_page/arrow_20pt_stroke.svg');
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: contain;
 }
+
+img {
+    position: relative;
+}
+
+.image-description {
+    grid-column: 1 / span 2;
+
+    margin: .3rem .5rem;
+
+    color: rgb(60, 60, 60);
+
+    font-family: 'Roboto Slab', serif;
+    font-size: .95rem;
+    font-style: italic;
+}
+
+#project-details p {
+    font-style: normal;
+
+    margin: 2.5rem 0;
+}
+
+.project-details-content {
+    display: grid;
+}
+
+#project-details ul {
+    grid-row: auto;
+    grid-column: auto;
+}
+
+#project-details a {
+    color: #000000;
+    font-weight: 300;
+    font-style: italic;
+
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: left;
+    align-content: center;
+    align-items: center;
+    grid-column-gap: .75rem;
+}
+
+#project-details .project-brief {
+    margin: 1rem 0;
+}
+
+.technologies-title {
+    grid-column: 1 / span 2;
+
+    margin-top: 1rem;
+
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+.related-technologies-container {
+    margin: 1rem 0 2rem 0;
+
+    display: grid;
+}
+
+.technology-group-container {
+    padding: .5rem 0;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.technology-group-divider {
+    height: 1px;
+    margin: 0 1rem;
+    background-color: rgb(60, 60, 60);
+}
+
+.technology-group-divider:last-child {
+    display: none;
+}
+
+.related-technologies-container li {
+    margin: .3rem 0;
+    padding: 0;
+
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* ======= 576px ======= */
+@media (min-width: 576px) {
+    .image-description {
+        margin: .3rem 1.5rem;
+    }
+
+    .technology-group-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ======= 768px ======= */
+@media (min-width: 768px) {
+    .technology-group-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .technology-group-divider {
+        margin: 0 1rem;
+    }
+  }
+
+/* ======= 992px ======= */
+@media (min-width: 992px) {
+    .technology-group-container {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .technology-group-divider {
+        margin: 0 2rem;
+    }
+  }

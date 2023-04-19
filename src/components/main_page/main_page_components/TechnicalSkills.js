@@ -6,8 +6,6 @@ import LoadingText from "../../LoadingText";
 
 // TECHNICAL SKILLS
 function TechnicalSkills({ skillsData, setSkillsData }) {
-  console.log("TechnicalSkills.js");
-
   return (
     <section id="technical-skills" className="fade-in">
       <div className="primary-container glass">
@@ -32,7 +30,6 @@ function SkillsContainers({ skillsData, setSkillsData }) {
   useEffect(() => {
     if (skillsData === null) {
       const url = "https://matsuuchi.com/api/technical_skills";
-      // const url = "http://localhost:8000/api/technical_skills";
       axios
         .get(url)
         .then(({ data }) => {

@@ -5,37 +5,28 @@ import "./Projects.css";
 
 // PROJECTS
 function Projects({
-  setHeaderRender,
-  setTechnicalSkillsRender,
-  setProjectsRender,
+  setMainPageRender,
+  setProjectDetailsRender,
   projectData,
   setProjectData,
-  setProjectDetailsRender,
   setProjectDetailsId,
-  projectScrollPosition,
   setProjectScrollPosition,
 }) {
-  console.log("Project.js");
-
   return (
     <section id="projects" className="fade-in">
       <div className="primary-container glass">
         <h2>
-          Each project represents an{" "}
-          <span className="bold-text purple-text">opportunity</span> for me to{" "}
+          Each project represents an opportunity for me to{" "}
           <span className="bold-text purple-text">push my limits</span> and{" "}
           <span className="bold-text purple-text">explore</span> new
           technologies and methodologies
         </h2>
         <ProjectsContainers
-          setHeaderRender={setHeaderRender}
-          setTechnicalSkillsRender={setTechnicalSkillsRender}
-          setProjectsRender={setProjectsRender}
+          setMainPageRender={setMainPageRender}
+          setProjectDetailsRender={setProjectDetailsRender}
           projectData={projectData}
           setProjectData={setProjectData}
-          setProjectDetailsRender={setProjectDetailsRender}
           setProjectDetailsId={setProjectDetailsId}
-          projectScrollPosition={projectScrollPosition}
           setProjectScrollPosition={setProjectScrollPosition}
         />
       </div>
@@ -45,25 +36,16 @@ function Projects({
 
 // PROJECTS - PROJECTS CONTAINER
 function ProjectsContainers({
-  setHeaderRender,
-  setTechnicalSkillsRender,
-  setProjectsRender,
+  setMainPageRender,
+  setProjectDetailsRender,
   projectData,
   setProjectData,
-  setProjectDetailsRender,
   setProjectDetailsId,
-  projectScrollPosition,
   setProjectScrollPosition,
 }) {
-  // scrolls back to previous y-scroll position when using back button from project details page
-  useEffect(() => {
-    window.scrollTo(0, projectScrollPosition);
-  }, [projectScrollPosition]);
-
   function loadProjectDetails(projectId) {
-    setHeaderRender(false);
-    setTechnicalSkillsRender(false);
-    setProjectsRender(false);
+    setMainPageRender(false);
+    setProjectDetailsRender(true);
     setProjectDetailsId(projectId);
     setProjectDetailsRender(true);
   }
@@ -72,7 +54,6 @@ function ProjectsContainers({
   useEffect(() => {
     if (projectData === null) {
       const url = "https://matsuuchi.com/api/projects";
-      // const url = "http://localhost:8000/api/projects";
       axios
         .get(url)
         .then(({ data }) => {
@@ -91,32 +72,7 @@ function ProjectsContainers({
         className="project-container"
         key={project.id}>
         <h3>{project.project_title}</h3>
-        <h4>{project.project_subtitle}</h4>
-        {project.project_website && project.project_github && (
-          <ul>
-            {project.project_website && (
-              <li>
-                <a
-                  href={project.project_website}
-                  target="_blank"
-                  rel="noreferrer">
-                  <div className="web-globe"></div>
-                  <div>on the web</div>
-                </a>
-              </li>
-            )}
-            {project.project_github && (
-              <li>
-                <a
-                  href={project.project_github}
-                  target="_blank"
-                  rel="noreferrer">
-                  on Github
-                </a>
-              </li>
-            )}
-          </ul>
-        )}
+        <p className="project-brief">{project.project_subtitle}</p>
         <button
           onClick={() => {
             loadProjectDetails(project.id);
@@ -135,7 +91,20 @@ function ProjectsContainers({
             <div className="forward-arrow"></div>
           </div>
         </button>
-        <div className="image-placeholder"></div>
+        <picture>
+          <source
+            srcSet={`/img/main_page/projects/${project.project_image_url}_slim_300.png`}
+            media="(max-width: 300px)"></source>
+          <source
+            srcSet={`/img/main_page/projects/${project.project_image_url}_slim_400.png`}
+            media="(max-width: 400px)"></source>
+          <source
+            srcSet={`/img/main_page/projects/${project.project_image_url}_tall_500.png`}
+            media="(max-width: 500px)"></source>
+          <img
+            src={`/img/main_page/projects/${project.project_image_url}_tall_600.png`}
+            alt={project.project_image_alt}></img>
+        </picture>
       </div>
     ));
   } else {
