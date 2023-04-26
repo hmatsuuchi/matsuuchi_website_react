@@ -96,6 +96,7 @@ img {
 }
 
 .related-technologies-container {
+    grid-column: 1 / span 2;
     margin: 1rem 0 2rem 0;
 
     display: grid;

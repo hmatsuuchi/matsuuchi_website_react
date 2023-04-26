@@ -93,16 +93,10 @@ function ProjectsContainers({
         </button>
         <picture>
           <source
-            srcSet={`/img/main_page/projects/${project.project_image_url}_slim_300.png`}
+            srcSet={`/img/main_page/projects/${project.project_image_url}_300_900.png`}
             media="(max-width: 300px)"></source>
-          <source
-            srcSet={`/img/main_page/projects/${project.project_image_url}_slim_400.png`}
-            media="(max-width: 400px)"></source>
-          <source
-            srcSet={`/img/main_page/projects/${project.project_image_url}_tall_500.png`}
-            media="(max-width: 500px)"></source>
           <img
-            src={`/img/main_page/projects/${project.project_image_url}_tall_600.png`}
+            src={`/img/main_page/projects/${project.project_image_url}_600_1200.png`}
             alt={project.project_image_alt}></img>
         </picture>
       </div>

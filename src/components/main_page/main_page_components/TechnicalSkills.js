@@ -13,7 +13,7 @@ function TechnicalSkills({ skillsData, setSkillsData }) {
           Coding is my <span className="bold-text purple-text">passion</span>.
           It's what I love to do. Here are some of my{" "}
           <span className="bold-text purple-text">favorite technologies</span>{" "}
-          and how long I've been working with them
+          and when I first started working with them
         </h2>
         <SkillsContainers
           skillsData={skillsData}
@@ -78,7 +78,7 @@ function Skill({ skillData, oldestSkill }) {
     let timeSince = new Date() - startDateObject; // compares start date to today
     let yearsSince = timeSince / (365 * 24 * 60 * 60 * 1000);
     let monthsSince = timeSince / (24 * 60 * 60 * 1000) / (365 / 12);
-    let monthsRemainder = monthsSince % 12;
+    let monthsRemainder = Math.floor(monthsSince % 12);
 
     let elapsedTimeString = "";
 
@@ -91,7 +91,7 @@ function Skill({ skillData, oldestSkill }) {
     if (monthsRemainder > 1) {
       elapsedTimeString += ` ${Math.floor(monthsRemainder)} months`;
     } else if (monthsRemainder === 1) {
-      elapsedTimeString += ` ${Math.floor(yearsSince)} month`;
+      elapsedTimeString += ` ${Math.floor(monthsRemainder)} month`;
     }
 
     return elapsedTimeString;

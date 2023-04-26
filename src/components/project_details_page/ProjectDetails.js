@@ -125,28 +125,16 @@ function ProjectDetails({
               return [
                 <picture key={`project-photo-${detail.id}`}>
                   <source
-                    srcSet={`/img/project_details_page/${detail.details_image_url}_slim_300.png`}
+                    srcSet={`/img/project_details_page/${projectDetailsData.project.id}/${detail.details_image_url}_300_600.png`}
                     media="(max-width: 300px)"></source>
                   <source
-                    srcSet={`/img/project_details_page/${detail.details_image_url}_slim_400.png`}
-                    media="(max-width: 400px)"></source>
-                  <source
-                    srcSet={`/img/project_details_page/${detail.details_image_url}_tall_500.png`}
-                    media="(max-width: 500px)"></source>
-                  <source
-                    srcSet={`/img/project_details_page/${detail.details_image_url}_tall_600.png`}
+                    srcSet={`/img/project_details_page/${projectDetailsData.project.id}/${detail.details_image_url}_600_900.png`}
                     media="(max-width: 600px)"></source>
                   <source
-                    srcSet={`/img/project_details_page/${detail.details_image_url}_tall_700.png`}
-                    media="(max-width: 700px)"></source>
-                  <source
-                    srcSet={`/img/project_details_page/${detail.details_image_url}_900.png`}
+                    srcSet={`/img/project_details_page/${projectDetailsData.project.id}/${detail.details_image_url}_900_900.png`}
                     media="(max-width: 900px)"></source>
-                  <source
-                    srcSet={`/img/project_details_page/${detail.details_image_url}_1000.png`}
-                    media="(max-width: 1000px)"></source>
                   <img
-                    src={`/img/project_details_page/${detail.details_image_url}_wide_1200.png`}
+                    src={`/img/project_details_page/${projectDetailsData.project.id}/${detail.details_image_url}_1200_900.png`}
                     alt={detail.details_image_alt}></img>
                 </picture>,
                 <div
