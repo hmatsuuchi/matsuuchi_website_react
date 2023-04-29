@@ -13,7 +13,7 @@ function TechnicalSkills({ skillsData, setSkillsData }) {
           Coding is my <span className="bold-text purple-text">passion</span>.
           It's what I love to do. Here are some of my{" "}
           <span className="bold-text purple-text">favorite technologies</span>{" "}
-          and when I first started working with them
+          and how long it's been since I started working with them
         </h2>
         <SkillsContainers
           skillsData={skillsData}
